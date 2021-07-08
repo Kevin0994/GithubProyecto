@@ -1,0 +1,824 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Proyecto" Class="DataProyectDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=darbyproyect.database.windows.net;Initial Catalog=Proyecto;Persist Security Info=True;User ID=DarbyProyect" SettingsObjectName="Datos.Properties.Settings" SettingsPropertyName="ProyectoConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Actividad" Member="Actividad">
+    <Type Name="Actividad">
+      <Column Name="IdActividad" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdPlan" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdHerramienta" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdRecursos" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Actividad" Member="Actividad1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="frecuencia" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Componente" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Actividad_Actividad_Herramienta" Member="Actividad_Herramienta" ThisKey="IdActividad" OtherKey="IdActividad" Type="Actividad_Herramienta" />
+      <Association Name="Actividad_Actividad_Recurso" Member="Actividad_Recurso" ThisKey="IdActividad" OtherKey="IdActividad" Type="Actividad_Recurso" />
+      <Association Name="Planes_Actividad" Member="Planes" ThisKey="IdPlan" OtherKey="IdPlan" Type="Planes" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Actividad_Herramienta" Member="Actividad_Herramienta">
+    <Type Name="Actividad_Herramienta">
+      <Column Name="IdActividad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdHerramienta" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Actividad_Actividad_Herramienta" Member="Actividad" ThisKey="IdActividad" OtherKey="IdActividad" Type="Actividad" IsForeignKey="true" />
+      <Association Name="Herramienta_Actividad_Herramienta" Member="Herramienta" ThisKey="IdHerramienta" OtherKey="idHerramienta" Type="Herramienta" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Actividad_Recurso" Member="Actividad_Recurso">
+    <Type Name="Actividad_Recurso">
+      <Column Name="IdActividad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdRecurso" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Actividad_Actividad_Recurso" Member="Actividad" ThisKey="IdActividad" OtherKey="IdActividad" Type="Actividad" IsForeignKey="true" />
+      <Association Name="Recurso_Actividad_Recurso" Member="Recurso" ThisKey="IdRecurso" OtherKey="IdRecurso" Type="Recurso" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Categoria" Member="Categoria">
+    <Type Name="Categoria">
+      <Column Name="idCategoria" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CaNombre" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Categoria_Productos" Member="Productos" ThisKey="idCategoria" OtherKey="idCategoria" Type="Productos" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Clientes" Member="Clientes">
+    <Type Name="Clientes">
+      <Column Name="IdUsuario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="idClientes" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CedCliente" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombres" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Apellidos" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Ciudad" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="CorreoElectronico" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Association Name="Clientes_Factura" Member="Factura" ThisKey="idClientes" OtherKey="IdCliente" Type="Factura" />
+      <Association Name="Clientes_Vehiculo" Member="Vehiculo" ThisKey="idClientes" OtherKey="IdCliente" Type="Vehiculo" />
+      <Association Name="Usuario_Clientes" Member="Usuario" ThisKey="IdUsuario" OtherKey="IdUsuario" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Empleados" Member="Empleados">
+    <Type Name="Empleados">
+      <Column Name="IdEmpleado" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdUsuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CedEmpleado" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombres" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Apellidos" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CorreoElectronico" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Tipo" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Association Name="Empleados_Mantenimiento" Member="Mantenimiento" ThisKey="IdEmpleado" OtherKey="Responsable" Type="Mantenimiento" />
+      <Association Name="Usuario_Empleados" Member="Usuario" ThisKey="IdUsuario" OtherKey="IdUsuario" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Factura" Member="Factura">
+    <Type Name="Factura">
+      <Column Name="IdFactura" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdCliente" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdProducto" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cantidad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Servicio" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FechaSalida" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="subtotal" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="Total" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Association Name="Factura_Factura_Detalle" Member="Factura_Detalle" ThisKey="IdFactura" OtherKey="IdFactura" Type="Factura_Detalle" />
+      <Association Name="Clientes_Factura" Member="Clientes" ThisKey="IdCliente" OtherKey="idClientes" Type="Clientes" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Factura_Detalle" Member="Factura_Detalle">
+    <Type Name="Factura_Detalle">
+      <Column Name="IdFactura" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdProducto" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cantidad" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="Subtotal" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Association Name="Factura_Factura_Detalle" Member="Factura" ThisKey="IdFactura" OtherKey="IdFactura" Type="Factura" IsForeignKey="true" />
+      <Association Name="Productos_Factura_Detalle" Member="Productos" ThisKey="IdProducto" OtherKey="IdProductos" Type="Productos" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Herramienta" Member="Herramienta">
+    <Type Name="Herramienta">
+      <Column Name="idHerramienta" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Tipo" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Herramienta_Actividad_Herramienta" Member="Actividad_Herramienta" ThisKey="idHerramienta" OtherKey="IdHerramienta" Type="Actividad_Herramienta" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Hoja de vida]" Member="Hoja_de_vida">
+    <Type Name="Hoja_de_vida">
+      <Column Name="IdHojaVida" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdVehiculo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ClaseVehiculo" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Marca" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Modelo" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Año" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="NumeroSerie" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NumeroChasis" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NumeroMotor" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Cilindraje" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Distancia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Transmision" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Linea" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Color" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Especificacion" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="Vehiculo_Hoja_de_vida" Member="Vehiculo" ThisKey="IdVehiculo" OtherKey="IdVehiculo" Type="Vehiculo" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Mantenimiento" Member="Mantenimiento">
+    <Type Name="Mantenimiento">
+      <Column Name="IdMantenimiento" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TipoMantenimiento" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="IdVehiculo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdUsuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Costo" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Responsable" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FechaInicio" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Estado" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Association Name="Mantenimiento_MantenimientoDetalle" Member="MantenimientoDetalle" ThisKey="IdMantenimiento" OtherKey="IdMantenimiento" Type="MantenimientoDetalle" />
+      <Association Name="Empleados_Mantenimiento" Member="Empleados" ThisKey="Responsable" OtherKey="IdEmpleado" Type="Empleados" IsForeignKey="true" />
+      <Association Name="Vehiculo_Mantenimiento" Member="Vehiculo" ThisKey="IdVehiculo" OtherKey="IdVehiculo" Type="Vehiculo" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MantenimientoDetalle" Member="MantenimientoDetalle">
+    <Type Name="MantenimientoDetalle">
+      <Column Name="IdMantenimiento" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdPlanes" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Mantenimiento_MantenimientoDetalle" Member="Mantenimiento" ThisKey="IdMantenimiento" OtherKey="IdMantenimiento" Type="Mantenimiento" IsForeignKey="true" />
+      <Association Name="Planes_MantenimientoDetalle" Member="Planes" ThisKey="IdPlanes" OtherKey="IdPlan" Type="Planes" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Modulo" Member="Modulo">
+    <Type Name="Modulo">
+      <Column Name="IdModulo" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Modulo_OPERACIONES" Member="OPERACIONES" ThisKey="IdModulo" OtherKey="idModulo" Type="OPERACIONES" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OPERACIONES" Member="OPERACIONES">
+    <Type Name="OPERACIONES">
+      <Column Name="idOperacione" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="idModulo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="OPERACIONES_RolesOperaciones" Member="RolesOperaciones" ThisKey="idOperacione" OtherKey="IdOperacion" Type="RolesOperaciones" />
+      <Association Name="Modulo_OPERACIONES" Member="Modulo" ThisKey="idModulo" OtherKey="IdModulo" Type="Modulo" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Planes" Member="Planes">
+    <Type Name="Planes">
+      <Column Name="IdPlan" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Codigo_Plan" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Planes_Actividad" Member="Actividad" ThisKey="IdPlan" OtherKey="IdPlan" Type="Actividad" />
+      <Association Name="Planes_MantenimientoDetalle" Member="MantenimientoDetalle" ThisKey="IdPlan" OtherKey="IdPlanes" Type="MantenimientoDetalle" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Producto_Proveedor" Member="Producto_Proveedor">
+    <Type Name="Producto_Proveedor">
+      <Column Name="IdProducto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdProveedor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FechaEntrada" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Proveedor_Producto_Proveedor" Member="Proveedor" ThisKey="IdProveedor" OtherKey="idProveedor" Type="Proveedor" IsForeignKey="true" />
+      <Association Name="Productos_Producto_Proveedor" Member="Productos" ThisKey="IdProducto" OtherKey="IdProductos" Type="Productos" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Proveedor" Member="Proveedor">
+    <Type Name="Proveedor">
+      <Column Name="idProveedor" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CedProveedor" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Representante" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Ciudad" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Association Name="Proveedor_Producto_Proveedor" Member="Producto_Proveedor" ThisKey="idProveedor" OtherKey="IdProveedor" Type="Producto_Proveedor" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Recurso" Member="Recurso">
+    <Type Name="Recurso">
+      <Column Name="IdRecurso" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdProducto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreRecurso" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cantidad" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="Precio_Unitario" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Association Name="Recurso_Actividad_Recurso" Member="Actividad_Recurso" ThisKey="IdRecurso" OtherKey="IdRecurso" Type="Actividad_Recurso" />
+      <Association Name="Productos_Recurso" Member="Productos" ThisKey="IdProducto" OtherKey="IdProductos" Type="Productos" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Roles" Member="Roles">
+    <Type Name="Roles">
+      <Column Name="IdRole" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Roles_RolesOperaciones" Member="RolesOperaciones" ThisKey="IdRole" OtherKey="IdRol" Type="RolesOperaciones" />
+      <Association Name="Roles_Usuario" Member="Usuario" ThisKey="IdRole" OtherKey="idRol" Type="Usuario" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RolesOperaciones" Member="RolesOperaciones">
+    <Type Name="RolesOperaciones">
+      <Column Name="IdRol" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdOperacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="OPERACIONES_RolesOperaciones" Member="OPERACIONES" ThisKey="IdOperacion" OtherKey="idOperacione" Type="OPERACIONES" IsForeignKey="true" />
+      <Association Name="Roles_RolesOperaciones" Member="Roles" ThisKey="IdRol" OtherKey="IdRole" Type="Roles" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.sysdiagrams" Member="sysdiagrams">
+    <Type Name="sysdiagrams">
+      <Column Name="name" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="principal_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="diagram_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="version" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="definition" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Usuario" Member="Usuario">
+    <Type Name="Usuario">
+      <Column Name="IdUsuario" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombres" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="fecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="idRol" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Usuario_Clientes" Member="Clientes" ThisKey="IdUsuario" OtherKey="IdUsuario" Type="Clientes" />
+      <Association Name="Usuario_Empleados" Member="Empleados" ThisKey="IdUsuario" OtherKey="IdUsuario" Type="Empleados" />
+      <Association Name="Usuario_Orden" Member="Orden" ThisKey="IdUsuario" OtherKey="IdUsuario" Type="Orden" />
+      <Association Name="Roles_Usuario" Member="Roles" ThisKey="idRol" OtherKey="IdRole" Type="Roles" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Vehiculo" Member="Vehiculo">
+    <Type Name="Vehiculo">
+      <Column Name="IdVehiculo" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdCliente" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Especificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Vehiculo_Hoja_de_vida" Member="Hoja_de_vida" ThisKey="IdVehiculo" OtherKey="IdVehiculo" Type="Hoja_de_vida" />
+      <Association Name="Vehiculo_Mantenimiento" Member="Mantenimiento" ThisKey="IdVehiculo" OtherKey="IdVehiculo" Type="Mantenimiento" />
+      <Association Name="Clientes_Vehiculo" Member="Clientes" ThisKey="IdCliente" OtherKey="idClientes" Type="Clientes" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Productos" Member="Productos">
+    <Type Name="Productos">
+      <Column Name="IdProductos" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idCategoria" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PrecioProveedor" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="StockActual" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StockMinimo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PrecioVenta" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Detalle" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Productos_Factura_Detalle" Member="Factura_Detalle" ThisKey="IdProductos" OtherKey="IdProducto" Type="Factura_Detalle" />
+      <Association Name="Productos_Producto_Proveedor" Member="Producto_Proveedor" ThisKey="IdProductos" OtherKey="IdProducto" Type="Producto_Proveedor" />
+      <Association Name="Productos_Recurso" Member="Recurso" ThisKey="IdProductos" OtherKey="IdProducto" Type="Recurso" />
+      <Association Name="Productos_Orden_Detalle" Member="Orden_Detalle" ThisKey="IdProductos" OtherKey="IdProducto" Type="Orden_Detalle" />
+      <Association Name="Categoria_Productos" Member="Categoria" ThisKey="idCategoria" OtherKey="idCategoria" Type="Categoria" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Orden_Detalle" Member="Orden_Detalle">
+    <Type Name="Orden_Detalle">
+      <Column Name="IdOrden" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdProducto" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PrecioCompra" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="CantidadSolicitada" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="CantidadRecibida" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Association Name="Productos_Orden_Detalle" Member="Productos" ThisKey="IdProducto" OtherKey="IdProductos" Type="Productos" IsForeignKey="true" />
+      <Association Name="Orden_Orden_Detalle" Member="Orden" ThisKey="IdOrden" OtherKey="IdOrden" Type="Orden" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Orden" Member="Orden">
+    <Type Name="Orden">
+      <Column Name="IdOrden" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdUsuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FechaOrden" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="FechaEntrada" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Estado" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Total" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Association Name="Orden_Orden_Detalle" Member="Orden_Detalle" ThisKey="IdOrden" OtherKey="IdOrden" Type="Orden_Detalle" />
+      <Association Name="Usuario_Orden" Member="Usuario" ThisKey="IdUsuario" OtherKey="IdUsuario" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.cp_ActualizarCategoria" Method="cp_ActualizarCategoria">
+    <Parameter Name="IdC" Parameter="idC" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CaN" Parameter="caN" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Des" Parameter="des" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_ActualizarClientes" Method="cp_ActualizarClientes">
+    <Parameter Name="CedC" Parameter="cedC" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Nom" Parameter="nom" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Ape" Parameter="ape" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Dir" Parameter="dir" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Ciu" Parameter="ciu" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Tel" Parameter="tel" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Cor" Parameter="cor" Type="System.String" DbType="VarChar(25)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_ActualizarHerramienta" Method="cp_ActualizarHerramienta">
+    <Parameter Name="IdH" Parameter="idH" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nom" Parameter="nom" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Tip" Parameter="tip" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Des" Parameter="des" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_ActualizarHojaVida" Method="cp_ActualizarHojaVida">
+    <Parameter Name="IdH" Parameter="idH" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdV" Parameter="idV" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ClaV" Parameter="claV" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Mar" Parameter="mar" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Mod" Parameter="mod" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Año" Parameter="año" Type="System.Int16" DbType="SmallInt" />
+    <Parameter Name="NumS" Parameter="numS" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="NumC" Parameter="numC" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="NumM" Parameter="numM" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Cil" Parameter="cil" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Dis" Parameter="dis" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Tran" Parameter="tran" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Lin" Parameter="lin" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Col" Parameter="col" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Esp" Parameter="esp" Type="System.String" DbType="VarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_ActualizarModulo" Method="cp_ActualizarModulo">
+    <Parameter Name="IdM" Parameter="idM" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nom" Parameter="nom" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Desc" Parameter="desc" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_ActualizarOperacion" Method="cp_ActualizarOperacion">
+    <Parameter Name="IdO" Parameter="idO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nom" Parameter="nom" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="IdM" Parameter="idM" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_ActualizarRecurso" Method="cp_ActualizarRecurso">
+    <Parameter Name="IdR" Parameter="idR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdP" Parameter="idP" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nom" Parameter="nom" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Des" Parameter="des" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Cant" Parameter="cant" Type="System.Int16" DbType="SmallInt" />
+    <Parameter Name="PreU" Parameter="preU" Type="System.Decimal" DbType="Money" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_ActualizarRol" Method="cp_ActualizarRol">
+    <Parameter Name="IdR" Parameter="idR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nom" Parameter="nom" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Desc" Parameter="desc" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_ActualizarRoles_Operacion" Method="cp_ActualizarRoles_Operacion">
+    <Parameter Name="IdR" Parameter="idR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdO" Parameter="idO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Desc" Parameter="desc" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_ActualizarUsuario" Method="cp_ActualizarUsuario">
+    <Parameter Name="Nom" Parameter="nom" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Fecha" Parameter="fecha" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="IdRol" Parameter="idRol" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_ActualizarVehiculo" Method="cp_ActualizarVehiculo">
+    <Parameter Name="IdV" Parameter="idV" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdC" Parameter="idC" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Fe" Parameter="fe" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Esp" Parameter="esp" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_BuscarUsuario" Method="cp_BuscarUsuario">
+    <Parameter Name="Nom" Parameter="nom" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="cont" Type="System.String" DbType="NVarChar(MAX)" />
+    <ElementType Name="cp_BuscarUsuarioResult">
+      <Column Name="IdUsuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombres" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="fecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="idRol" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.cp_EliminarCategoria" Method="cp_EliminarCategoria">
+    <Parameter Name="IdC" Parameter="idC" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_EliminarHerramienta" Method="cp_EliminarHerramienta">
+    <Parameter Name="IdC" Parameter="idC" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_EliminarHojaVida" Method="cp_EliminarHojaVida">
+    <Parameter Name="IdH" Parameter="idH" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_EliminarModulo" Method="cp_EliminarModulo">
+    <Parameter Name="IdM" Parameter="idM" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_EliminarOperacion" Method="cp_EliminarOperacion">
+    <Parameter Name="IdO" Parameter="idO" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_EliminarRecurso" Method="cp_EliminarRecurso">
+    <Parameter Name="IdE" Parameter="idE" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_EliminarRol" Method="cp_EliminarRol">
+    <Parameter Name="IdR" Parameter="idR" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_EliminarRoles_Operaciones" Method="cp_EliminarRoles_Operaciones">
+    <Parameter Name="Value" Parameter="value" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_EliminarUsuario" Method="cp_EliminarUsuario">
+    <Parameter Name="IdU" Parameter="idU" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_EliminarVehiculo" Method="cp_EliminarVehiculo">
+    <Parameter Name="IdC" Parameter="idC" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_InsertarCategoria" Method="cp_InsertarCategoria">
+    <Parameter Name="IdC" Parameter="idC" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CaN" Parameter="caN" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Des" Parameter="des" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_InsertarHerramienta" Method="cp_InsertarHerramienta">
+    <Parameter Name="IdH" Parameter="idH" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nom" Parameter="nom" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Tip" Parameter="tip" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Des" Parameter="des" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_InsertarHojaVehiculo" Method="cp_InsertarHojaVehiculo">
+    <Parameter Name="IdH" Parameter="idH" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdV" Parameter="idV" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ClaV" Parameter="claV" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Mar" Parameter="mar" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Mod" Parameter="mod" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Año" Parameter="año" Type="System.Int16" DbType="SmallInt" />
+    <Parameter Name="NumS" Parameter="numS" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="NumC" Parameter="numC" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="NumM" Parameter="numM" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Cil" Parameter="cil" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Dis" Parameter="dis" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Tran" Parameter="tran" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Lin" Parameter="lin" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Col" Parameter="col" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Esp" Parameter="esp" Type="System.String" DbType="VarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_InsertarModulo" Method="cp_InsertarModulo">
+    <Parameter Name="IdM" Parameter="idM" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nom" Parameter="nom" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Desc" Parameter="desc" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_InsertarOperacion" Method="cp_InsertarOperacion">
+    <Parameter Name="IdO" Parameter="idO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nom" Parameter="nom" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="IdM" Parameter="idM" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_InsertarRecurso" Method="cp_InsertarRecurso">
+    <Parameter Name="IdR" Parameter="idR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nom" Parameter="nom" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Des" Parameter="des" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Cant" Parameter="cant" Type="System.Int16" DbType="SmallInt" />
+    <Parameter Name="PreU" Parameter="preU" Type="System.Decimal" DbType="Money" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_InsertarRol" Method="cp_InsertarRol">
+    <Parameter Name="IdR" Parameter="idR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nom" Parameter="nom" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Desc" Parameter="desc" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_InsertarRoles_Operacion" Method="cp_InsertarRoles_Operacion">
+    <Parameter Name="IdR" Parameter="idR" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdO" Parameter="idO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Desc" Parameter="desc" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_InsertarUsuarios" Method="cp_InsertarUsuarios">
+    <Parameter Name="Nom" Parameter="nom" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Fecha" Parameter="fecha" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="IdRol" Parameter="idRol" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_InsertarVehiculo" Method="cp_InsertarVehiculo">
+    <Parameter Name="IdV" Parameter="idV" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdC" Parameter="idC" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Fe" Parameter="fe" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Esp" Parameter="esp" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_ListarClientesVista_Filtro" Method="cp_ListarClientesVista_Filtro">
+    <Parameter Name="value" Type="System.String" DbType="VarChar(40)" />
+    <ElementType Name="cp_ListarClientesVista_FiltroResult">
+      <Column Name="Rol" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CedCliente" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombres" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Apellidos" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Ciudad" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CorreoElectronico" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.cp_ListarProductosVista_Filtro" Method="cp_ListarProductosVista_Filtro">
+    <Parameter Name="value" Type="System.String" DbType="VarChar(40)" />
+    <ElementType Name="cp_ListarProductosVista_FiltroResult">
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Categoria" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="PrecioProveedor" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="StockActual" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PrecioVenta" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="FechaEntrada" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Proveedor" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.cp_ListarProveedores_Filtro" Method="cp_ListarProveedores_Filtro">
+    <Parameter Name="value" Type="System.String" DbType="VarChar(40)" />
+    <ElementType Name="cp_ListarProveedores_FiltroResult">
+      <Column Name="idProveedor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CedProveedor" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Representante" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Ciudad" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.cp_ListarUsuarios_Filtro" Method="cp_ListarUsuarios_Filtro">
+    <Parameter Name="value" Type="System.String" DbType="VarChar(40)" />
+    <ElementType Name="cp_ListarUsuarios_FiltroResult">
+      <Column Name="IdUsuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombres" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="fecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="idRol" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.cp_ListarUsuariosVista_Filtro" Method="cp_ListarUsuariosVista_Filtro">
+    <Parameter Name="value" Type="System.String" DbType="VarChar(40)" />
+    <ElementType Name="cp_ListarUsuariosVista_FiltroResult">
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Rol" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Operacion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Modulo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.cp_ListarVehiculosVista_Filtro" Method="cp_ListarVehiculosVista_Filtro">
+    <Parameter Name="value" Type="System.String" DbType="VarChar(40)" />
+    <ElementType Name="cp_ListarVehiculosVista_FiltroResult">
+      <Column Name="Rol" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CedCliente" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombres" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Marca" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Modelo" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Año" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="Color" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Especificacion" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.cp_ListarVistaEmpleados_Filtro" Method="cp_ListarVistaEmpleados_Filtro">
+    <Parameter Name="value" Type="System.String" DbType="VarChar(40)" />
+    <ElementType Name="cp_ListarVistaEmpleados_FiltroResult">
+      <Column Name="Rol" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="fecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CedEmpleado" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombres" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Apellidos" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CorreoElectronico" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Tipo" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.cp_InsertarClientes" Method="cp_InsertarClientes">
+    <Parameter Name="IdU" Parameter="idU" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CedC" Parameter="cedC" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Nom" Parameter="nom" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Ape" Parameter="ape" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Dir" Parameter="dir" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Ciu" Parameter="ciu" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Tel" Parameter="tel" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Cor" Parameter="cor" Type="System.String" DbType="VarChar(25)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_EliminarClientes" Method="cp_EliminarClientes">
+    <Parameter Name="Ced" Parameter="ced" Type="System.String" DbType="VarChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_InsertarEmpleados" Method="cp_InsertarEmpleados">
+    <Parameter Name="IdU" Parameter="idU" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CedE" Parameter="cedE" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Nom" Parameter="nom" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Ape" Parameter="ape" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Dir" Parameter="dir" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Tel" Parameter="tel" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Cor" Parameter="cor" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Tip" Parameter="tip" Type="System.String" DbType="VarChar(15)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_EliminarEmpleado" Method="cp_EliminarEmpleado">
+    <Parameter Name="CedE" Parameter="cedE" Type="System.String" DbType="VarChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_ActualizarEmpleado" Method="cp_ActualizarEmpleado">
+    <Parameter Name="CedE" Parameter="cedE" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Nom" Parameter="nom" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Ape" Parameter="ape" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Dir" Parameter="dir" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Tel" Parameter="tel" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Cor" Parameter="cor" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Tip" Parameter="tip" Type="System.String" DbType="VarChar(15)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_EliminarProducto" Method="cp_EliminarProducto">
+    <Parameter Name="IdP" Parameter="idP" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_EliminarOrden" Method="cp_EliminarOrden">
+    <Parameter Name="IdO" Parameter="idO" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_EliminarOrden_Detalle" Method="cp_EliminarOrden_Detalle">
+    <Parameter Name="IdO" Parameter="idO" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_InsertarProducto" Method="cp_InsertarProducto">
+    <Parameter Name="IdP" Parameter="idP" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdC" Parameter="idC" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nom" Parameter="nom" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Pre" Parameter="pre" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="StA" Parameter="stA" Type="System.Int32" DbType="Int" />
+    <Parameter Name="StM" Parameter="stM" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PreV" Parameter="preV" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="Det" Parameter="det" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_ActualizarProducto" Method="cp_ActualizarProducto">
+    <Parameter Name="IdP" Parameter="idP" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdC" Parameter="idC" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nom" Parameter="nom" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Pre" Parameter="pre" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="StA" Parameter="stA" Type="System.Int32" DbType="Int" />
+    <Parameter Name="StM" Parameter="stM" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PreV" Parameter="preV" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="Det" Parameter="det" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_BuscarProducto" Method="cp_BuscarProducto">
+    <Parameter Name="value" Type="System.Int32" DbType="Int" />
+    <ElementType Name="cp_BuscarProductoResult">
+      <Column Name="IdProductos" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idCategoria" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PrecioProveedor" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="StockActual" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StockMinimo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PrecioVenta" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Detalle" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.cp_ListarProductos_Filtro" Method="cp_ListarProductos_Filtro">
+    <Parameter Name="value" Type="System.String" DbType="VarChar(40)" />
+    <ElementType Name="cp_ListarProductos_FiltroResult">
+      <Column Name="IdProductos" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idCategoria" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PrecioProveedor" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="StockActual" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StockMinimo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PrecioVenta" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Detalle" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.cp_BuscarProducto_Orden" Method="cp_BuscarProducto_Orden">
+    <Parameter Name="value" Type="System.Int32" DbType="Int" />
+    <ElementType Name="cp_BuscarProducto_OrdenResult">
+      <Column Name="IdProductos" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idCategoria" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PrecioProveedor" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="StockActual" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StockMinimo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PrecioVenta" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Detalle" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.cp_ActualizarOrden" Method="cp_ActualizarOrden">
+    <Parameter Name="IdO" Parameter="idO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FeO" Parameter="feO" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FeC" Parameter="feC" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Es" Parameter="es" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="To" Parameter="to" Type="System.Decimal" DbType="Money" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_ActualizarOrden_Detalle" Method="cp_ActualizarOrden_Detalle">
+    <Parameter Name="IdO" Parameter="idO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdP" Parameter="idP" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PreC" Parameter="preC" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="CanS" Parameter="canS" Type="System.Int16" DbType="SmallInt" />
+    <Parameter Name="CanR" Parameter="canR" Type="System.Int16" DbType="SmallInt" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_InsertarOrden" Method="cp_InsertarOrden">
+    <Parameter Name="IdO" Parameter="idO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdU" Parameter="idU" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FeO" Parameter="feO" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FeC" Parameter="feC" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Es" Parameter="es" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="To" Parameter="to" Type="System.Decimal" DbType="Money" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_InsertarOrden_Detalle" Method="cp_InsertarOrden_Detalle">
+    <Parameter Name="IdO" Parameter="idO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdP" Parameter="idP" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PreC" Parameter="preC" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="CanS" Parameter="canS" Type="System.Int16" DbType="SmallInt" />
+    <Parameter Name="CanR" Parameter="canR" Type="System.Int16" DbType="SmallInt" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_InsertarOrden" Method="cp_InsertarOrden1">
+    <Parameter Name="IdO" Parameter="idO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdU" Parameter="idU" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FeO" Parameter="feO" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FeC" Parameter="feC" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Es" Parameter="es" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="To" Parameter="to" Type="System.Decimal" DbType="Money" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_InsertarOrden_Detalle" Method="cp_InsertarOrden_Detalle1">
+    <Parameter Name="IdO" Parameter="idO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdP" Parameter="idP" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PreC" Parameter="preC" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="CanS" Parameter="canS" Type="System.Int16" DbType="SmallInt" />
+    <Parameter Name="CanR" Parameter="canR" Type="System.Int16" DbType="SmallInt" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_CountProducto_Orden" Method="cp_CountProducto_Orden">
+    <Parameter Name="value" Type="System.Int32" DbType="Int" />
+    <ElementType Name="cp_CountProducto_OrdenResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.cp_BuscarCantidadSProducto_Orden" Method="cp_BuscarCantidadSProducto_Orden">
+    <Parameter Name="IdP" Parameter="idP" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdO" Parameter="idO" Type="System.Int32" DbType="Int" />
+    <ElementType Name="cp_BuscarCantidadSProducto_OrdenResult">
+      <Column Name="CantidadRecibida" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.cp_ActualizarOrdenTotal" Method="cp_ActualizarOrdenTotal">
+    <Parameter Name="IdO" Parameter="idO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Es" Parameter="es" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="To" Parameter="to" Type="System.Decimal" DbType="Money" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_ActualizarOrden_DetalleStock" Method="cp_ActualizarOrden_DetalleStock">
+    <Parameter Name="IdO" Parameter="idO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdP" Parameter="idP" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CanR" Parameter="canR" Type="System.Int16" DbType="SmallInt" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_ActualizarProductoStock" Method="cp_ActualizarProductoStock">
+    <Parameter Name="IdP" Parameter="idP" Type="System.Int32" DbType="Int" />
+    <Parameter Name="StA" Parameter="stA" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cp_ListarPedidosVista_Filtro" Method="cp_ListarPedidosVista_Filtro">
+    <Parameter Name="value" Type="System.String" DbType="VarChar(40)" />
+    <ElementType Name="cp_ListarPedidosVista_FiltroResult">
+      <Column Name="IdOrden" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Rol" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaOrden" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Total" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.cp_ListarVistaCompra_Filtro" Method="cp_ListarVistaCompra_Filtro">
+    <Parameter Name="value" Type="System.String" DbType="VarChar(40)" />
+    <ElementType Name="cp_ListarVistaCompra_FiltroResult">
+      <Column Name="IdOrden" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdUsuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FechaOrden" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="FechaEntrada" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Estado" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Total" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

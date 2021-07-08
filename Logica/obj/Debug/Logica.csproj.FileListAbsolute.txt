@@ -1,0 +1,11 @@
+C:\Users\kevin\source\repos\AppWInProyectoBeta\Logica\bin\Debug\Logica.dll
+C:\Users\kevin\source\repos\AppWInProyectoBeta\Logica\bin\Debug\Logica.pdb
+C:\Users\kevin\source\repos\AppWInProyectoBeta\Logica\obj\Debug\Logica.csprojAssemblyReference.cache
+C:\Users\kevin\source\repos\AppWInProyectoBeta\Logica\obj\Debug\Logica.dll
+C:\Users\kevin\source\repos\AppWInProyectoBeta\Logica\obj\Debug\Logica.pdb
+C:\Users\kevin\source\repos\AppWInProyectoBeta\Logica\bin\Debug\Datos.dll
+C:\Users\kevin\source\repos\AppWInProyectoBeta\Logica\bin\Debug\Entidades.dll
+C:\Users\kevin\source\repos\AppWInProyectoBeta\Logica\bin\Debug\Datos.pdb
+C:\Users\kevin\source\repos\AppWInProyectoBeta\Logica\bin\Debug\Datos.dll.config
+C:\Users\kevin\source\repos\AppWInProyectoBeta\Logica\bin\Debug\Entidades.pdb
+C:\Users\kevin\source\repos\AppWInProyectoBeta\Logica\obj\Debug\Logica.csproj.CopyComplete

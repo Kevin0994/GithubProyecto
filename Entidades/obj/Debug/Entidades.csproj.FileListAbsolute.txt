@@ -1,0 +1,5 @@
+C:\Users\kevin\source\repos\AppWInProyectoBeta\Entidades\bin\Debug\Entidades.dll
+C:\Users\kevin\source\repos\AppWInProyectoBeta\Entidades\bin\Debug\Entidades.pdb
+C:\Users\kevin\source\repos\AppWInProyectoBeta\Entidades\obj\Debug\Entidades.csprojAssemblyReference.cache
+C:\Users\kevin\source\repos\AppWInProyectoBeta\Entidades\obj\Debug\Entidades.dll
+C:\Users\kevin\source\repos\AppWInProyectoBeta\Entidades\obj\Debug\Entidades.pdb

@@ -1,0 +1,17 @@
+C:\Users\kevin\source\repos\AppWInProyectoBeta\ProyectoBeta\bin\Debug\ProyectoBeta.exe.config
+C:\Users\kevin\source\repos\AppWInProyectoBeta\ProyectoBeta\bin\Debug\ProyectoBeta.exe
+C:\Users\kevin\source\repos\AppWInProyectoBeta\ProyectoBeta\bin\Debug\ProyectoBeta.pdb
+C:\Users\kevin\source\repos\AppWInProyectoBeta\ProyectoBeta\obj\Debug\ProyectoBeta.csprojAssemblyReference.cache
+C:\Users\kevin\source\repos\AppWInProyectoBeta\ProyectoBeta\obj\Debug\ProyectoBeta.Form1.resources
+C:\Users\kevin\source\repos\AppWInProyectoBeta\ProyectoBeta\obj\Debug\ProyectoBeta.Properties.Resources.resources
+C:\Users\kevin\source\repos\AppWInProyectoBeta\ProyectoBeta\obj\Debug\ProyectoBeta.csproj.GenerateResource.cache
+C:\Users\kevin\source\repos\AppWInProyectoBeta\ProyectoBeta\obj\Debug\ProyectoBeta.exe
+C:\Users\kevin\source\repos\AppWInProyectoBeta\ProyectoBeta\obj\Debug\ProyectoBeta.pdb
+C:\Users\kevin\source\repos\AppWInProyectoBeta\ProyectoBeta\bin\Debug\BWCMM.dll
+C:\Users\kevin\source\repos\AppWInProyectoBeta\ProyectoBeta\obj\Debug\ProyectoBeta.csproj.CopyComplete
+C:\Users\kevin\source\repos\AppWInProyectoBeta\ProyectoBeta\obj\Debug\ProyectoBeta.frmClientes.resources
+C:\Users\kevin\source\repos\AppWInProyectoBeta\ProyectoBeta\obj\Debug\ProyectoBeta.frmProductos.resources
+C:\Users\kevin\source\repos\AppWInProyectoBeta\ProyectoBeta\obj\Debug\ProyectoBeta.frmCRUDProductos.resources
+C:\Users\kevin\source\repos\AppWInProyectoBeta\ProyectoBeta\bin\Debug\FontAwesome.Sharp.dll
+C:\Users\kevin\source\repos\AppWInProyectoBeta\ProyectoBeta\obj\Debug\ProyectoBeta.frmCRUDCategoria.resources
+C:\Users\kevin\source\repos\AppWInProyectoBeta\ProyectoBeta\obj\Debug\ProyectoBeta.frmCRUDClientes.resources
